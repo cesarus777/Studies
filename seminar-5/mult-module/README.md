@@ -6,4 +6,4 @@ File 'all-in.c' finds area of all triangeles.
 
 Files 'obsha.c' and 'obsha.h' contain common part.
 
-Makefile compiles 'all-in.out' and 'max.c'.
+Makefile compiles 'all-in.out' and 'max.out'.
