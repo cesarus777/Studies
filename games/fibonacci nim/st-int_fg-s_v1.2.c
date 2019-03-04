@@ -6,7 +6,7 @@
 //------------------------------------------------------------------
 // FIBONACCI NIM by CESARUS777
 // next_turn part
-// verson 1.1
+// verson 1.2
 //------------------------------------------------------------------
 
 // !!! NEEDS 'srand(time(NULL))' once in main before first call (optional, but desireble) !!! 
