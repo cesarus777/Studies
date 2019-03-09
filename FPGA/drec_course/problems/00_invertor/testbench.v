@@ -24,11 +24,13 @@ pset00_test pset00_test(.in(clk), .out(clk1)); /* Tested module instance */
 *   Problem 3/5:
 *   add wire for pset00_invertor output
 */
+wire invertor_out;
 
 /*
 *   Problem 3/5:
 *   add instance of pset00_invertor here
 */
+pset00_invertor pset00_invertor(.in(clk), .out(invertor_out));
 
 initial begin
     $dumpvars;      /* Open for dump of signals */

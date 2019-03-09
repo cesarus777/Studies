@@ -1,7 +1,7 @@
 test: pset00
 	./pset00
 
-pset00: testbench.v pset00_test.v
+pset00: testbench.v pset00_test.v pset00_invertor.v
 	iverilog $^ -o $@
 
 clean:

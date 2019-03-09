@@ -22,12 +22,19 @@ end
 *   Create approprite wires to test it.
 */
 
+wire w_div;
+
+clk_div #(.X(15)) div (.clk(clk), .clk_out(w_div));
+
+wire count;
+
 initial begin
     $dumpvars;      /* Open for dump of signals */
     /*
     *   Problem 2/3:
     *   Stop simulation after several cycles of your (divided) clock.
     */
+    #300000 $finish;
 end
 
 endmodule

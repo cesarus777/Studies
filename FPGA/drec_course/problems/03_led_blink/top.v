@@ -26,4 +26,6 @@ assign {DS_EN1, DS_EN2, DS_EN3, DS_EN4} = 4'b1111;
 *   Choose any value of parameter X in range [11; 14].
 */
 
+clk_div #(.X(12)) div (.clk(CLK), .clk(DS_C));
+
 endmodule
