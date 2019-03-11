@@ -1,3 +1,3 @@
 # FPGA
 
-Frozen
+Frozen for some time
