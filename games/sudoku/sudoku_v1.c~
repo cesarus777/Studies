@@ -90,17 +90,17 @@ int main()
                         continue;
                     }
 
-                    if (cgrid[i][j] == orig_grid[i][j]) {
-                        while (cgrid[i][j] == orig_grid[i][j]) {
-                            --j;
-                            if (j < 0) {
-                                j = 8;
-                                --i;
-                            }
-
+		    if (cgrid[i][j] == orig_grid[i][j]) {
+                    while (cgrid[i][j] == orig_grid[i][j]) {
+                        --j;
+                        if (j < 0) {
+                            j = 8;
+                            --i;
                         }
-                        ++cgrid[i][j];
+
                     }
+		    ++cgrid[i][j];
+		    }
                 }
             }
         }
