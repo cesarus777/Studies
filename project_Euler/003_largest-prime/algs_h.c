@@ -84,14 +84,3 @@ int nth_prime(struct sieve_t s, unsigned n)
     }
     return -1;
 }
-
-/*
-int main()
-{
-    struct sieve_t s = init_sieve(10000);
-    assert(is_prime(s, 96) == 0);
-    assert(is_prime(s, 97) == 1);
-    printf("%u\n", nth_prime(s, 9999));
-    free_sieve(&s);
-}
-*/
