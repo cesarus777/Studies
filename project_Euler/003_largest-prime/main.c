@@ -28,9 +28,8 @@ unsigned long long lpm(unsigned long long n, struct sieve_t *s)
 int main()
 {
     unsigned long long input = 22751046341;
-    unsigned long long top = sqrt(input) + 1;
     unsigned long long start_time  = time(NULL);
-    struct sieve_t s = init_sieve(top);
+    struct sieve_t s = init_sieve(input);
     printf("The largest prime factor of %llu is %llu\n", input, lpm(input, &s));
     unsigned long long end_time = time(NULL);
     printf("Time is %llu\n", end_time - start_time);
