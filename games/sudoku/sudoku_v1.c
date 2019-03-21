@@ -2,29 +2,29 @@
 #include "stdio.h"
 #include "stdlib.h"
 
-void fill_grid(char grid[9][9])
+void fill_grid(char *grid[9])
 {
     int i, j, check;
     for (i = 0; i < 9; ++i) {
         for (j = 0; j < 9; ++j) {
-            check = scanf("%c", (&grid)[i][j]);
+            check = scanf("%c", &grid[i][j]);
             assert(check == 1);
 	    grid[i][j] -= '0';
         }
     }
 }
 
-void copy_grid(char (*cg)[9][9], const char (*og)[9][9])
+void copy_grid(char *cg[9], const char *og[9])
 {
     int i, j;
     for (i = 0; i < 9; ++i) {
         for (j = 0; j < 9; ++j) {
-            (*cg)[i][j] = (*og)[i][j];
+            cg[i][j] = og[i][j];
         }
     }
 }
 
-void print_grid(char (*g)[9][9])
+void print_grid(char *g[9])
 {
     int i, j;
     for (i = 0; i < 9; ++i) {
@@ -57,11 +57,11 @@ int main()
     assert((&orig_grid)[5][3] == (orig_grid + 5 * 9 +3));
     fill_grid(orig_grid);
     char cgrid[9][9];
-    copy_grid(&cgrid, &orig_grid);
+    copy_grid(cgrid, orig_grid);
 
-    print_grid(&orig_grid);
+    print_grid(orig_grid);
     printf("\n");
-    print_grid(&cgrid);
+    print_grid(cgrid);
 
     int i, j;
     for (i = 0; i < 9; ++i) {
@@ -93,6 +93,6 @@ int main()
         }
     }
 
-    print_grid(&cgrid);
+    print_grid(cgrid);
 
 }
