@@ -3,18 +3,21 @@
 #include <time.h>
 #include "algs_h.h"
 
+// smallest prime factor
 unsigned long long spm(unsigned long long n, unsigned long long last,
                   struct sieve_t *s)
 {
     for (int i = last;; ++i) {
-        //if (0 != s->sieve[i / 8]) {
-            if (0 == check_bit(s->sieve[i / 8], i % 8))
+        if (0 != s->sieve[i / 8]) {
+            if (0 == check_bit(s->sieve[i / 8], i % 8)) {
                 if ((n / i) * i == n)
                     return i;
-        //}
+            }
+        }
     }
 }
 
+// largest prime factor
 unsigned long long lpm(unsigned long long n, struct sieve_t *s)
 {
     unsigned long long m = 2;
