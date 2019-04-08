@@ -1,0 +1,140 @@
+|top
+CLK => CLK.IN2
+DS_EN1 << hex_display:hex_display.anodes
+DS_EN2 << hex_display:hex_display.anodes
+DS_EN3 << hex_display:hex_display.anodes
+DS_EN4 << hex_display:hex_display.anodes
+DS_A << hex_display:hex_display.segments
+DS_B << hex_display:hex_display.segments
+DS_C << hex_display:hex_display.segments
+DS_D << hex_display:hex_display.segments
+DS_E << hex_display:hex_display.segments
+DS_F << hex_display:hex_display.segments
+DS_G << hex_display:hex_display.segments
+
+
+|top|clk_div:clk_div1
+clk => q[0].CLK
+clk => q[1].CLK
+clk => q[2].CLK
+clk => q[3].CLK
+clk => q[4].CLK
+clk => q[5].CLK
+clk => q[6].CLK
+clk => q[7].CLK
+clk => q[8].CLK
+clk => q[9].CLK
+clk => q[10].CLK
+clk => q[11].CLK
+clk_out <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|top|clk_div:clk_div2
+clk => q[0].CLK
+clk => q[1].CLK
+clk => q[2].CLK
+clk => q[3].CLK
+clk => q[4].CLK
+clk => q[5].CLK
+clk => q[6].CLK
+clk => q[7].CLK
+clk => q[8].CLK
+clk => q[9].CLK
+clk => q[10].CLK
+clk => q[11].CLK
+clk => q[12].CLK
+clk => q[13].CLK
+clk => q[14].CLK
+clk => q[15].CLK
+clk => q[16].CLK
+clk => q[17].CLK
+clk => q[18].CLK
+clk => q[19].CLK
+clk => q[20].CLK
+clk => q[21].CLK
+clk => q[22].CLK
+clk => q[23].CLK
+clk_out <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|top|counter:counter
+clk => cnt[0].CLK
+clk => cnt[1].CLK
+clk => cnt[2].CLK
+clk => cnt[3].CLK
+clk => cnt[4].CLK
+clk => cnt[5].CLK
+clk => cnt[6].CLK
+clk => cnt[7].CLK
+clk => cnt[8].CLK
+clk => cnt[9].CLK
+clk => cnt[10].CLK
+clk => cnt[11].CLK
+clk => cnt[12].CLK
+clk => cnt[13].CLK
+clk => cnt[14].CLK
+clk => cnt[15].CLK
+q[0] <= cnt[0].DB_MAX_OUTPUT_PORT_TYPE
+q[1] <= cnt[1].DB_MAX_OUTPUT_PORT_TYPE
+q[2] <= cnt[2].DB_MAX_OUTPUT_PORT_TYPE
+q[3] <= cnt[3].DB_MAX_OUTPUT_PORT_TYPE
+q[4] <= cnt[4].DB_MAX_OUTPUT_PORT_TYPE
+q[5] <= cnt[5].DB_MAX_OUTPUT_PORT_TYPE
+q[6] <= cnt[6].DB_MAX_OUTPUT_PORT_TYPE
+q[7] <= cnt[7].DB_MAX_OUTPUT_PORT_TYPE
+q[8] <= cnt[8].DB_MAX_OUTPUT_PORT_TYPE
+q[9] <= cnt[9].DB_MAX_OUTPUT_PORT_TYPE
+q[10] <= cnt[10].DB_MAX_OUTPUT_PORT_TYPE
+q[11] <= cnt[11].DB_MAX_OUTPUT_PORT_TYPE
+q[12] <= cnt[12].DB_MAX_OUTPUT_PORT_TYPE
+q[13] <= cnt[13].DB_MAX_OUTPUT_PORT_TYPE
+q[14] <= cnt[14].DB_MAX_OUTPUT_PORT_TYPE
+q[15] <= cnt[15].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|top|hex_display:hex_display
+clk => i[0].CLK
+clk => i[1].CLK
+data[0] => Mux0.IN14
+data[1] => Mux1.IN14
+data[2] => Mux2.IN14
+data[3] => Mux3.IN14
+data[4] => Mux0.IN10
+data[5] => Mux1.IN10
+data[6] => Mux2.IN10
+data[7] => Mux3.IN10
+data[8] => Mux0.IN6
+data[9] => Mux1.IN6
+data[10] => Mux2.IN6
+data[11] => Mux3.IN6
+data[12] => Mux0.IN2
+data[13] => Mux1.IN2
+data[14] => Mux2.IN2
+data[15] => Mux3.IN2
+anodes[0] <= ShiftLeft0.DB_MAX_OUTPUT_PORT_TYPE
+anodes[1] <= ShiftLeft0.DB_MAX_OUTPUT_PORT_TYPE
+anodes[2] <= ShiftLeft0.DB_MAX_OUTPUT_PORT_TYPE
+anodes[3] <= ShiftLeft0.DB_MAX_OUTPUT_PORT_TYPE
+segments[0] <= hex_to_seg:hex_to_seg.segments
+segments[1] <= hex_to_seg:hex_to_seg.segments
+segments[2] <= hex_to_seg:hex_to_seg.segments
+segments[3] <= hex_to_seg:hex_to_seg.segments
+segments[4] <= hex_to_seg:hex_to_seg.segments
+segments[5] <= hex_to_seg:hex_to_seg.segments
+segments[6] <= hex_to_seg:hex_to_seg.segments
+
+
+|top|hex_display:hex_display|hex_to_seg:hex_to_seg
+data[0] => Decoder0.IN3
+data[1] => Decoder0.IN2
+data[2] => Decoder0.IN1
+data[3] => Decoder0.IN0
+segments[0] <= WideOr6.DB_MAX_OUTPUT_PORT_TYPE
+segments[1] <= WideOr5.DB_MAX_OUTPUT_PORT_TYPE
+segments[2] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+segments[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+segments[4] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+segments[5] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+segments[6] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+
+

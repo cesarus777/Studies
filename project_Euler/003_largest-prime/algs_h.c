@@ -46,14 +46,6 @@ struct sieve_t init_sieve(unsigned long long n)
         }
     }
 
-#if 0
-    for (int i = 2; i < r; ++i) {
-        if (0 == res.sieve[i]);
-        for (int j = 2 * i; j < n; j += i)
-            res.sieve[j] = 1;
-    }
-#endif
-
     return res;
 }
 

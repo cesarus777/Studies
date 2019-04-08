@@ -7,7 +7,7 @@
 unsigned long long spm(unsigned long long n, unsigned long long last,
                   struct sieve_t *s)
 {
-    for (int i = last;; ++i) {
+    for (unsigned long long i = last;; i += 2) {
         if (0 != s->sieve[i / 8]) {
             if (0 == check_bit(s->sieve[i / 8], i % 8)) {
                 if ((n / i) * i == n)
@@ -20,7 +20,7 @@ unsigned long long spm(unsigned long long n, unsigned long long last,
 // largest prime factor
 unsigned long long lpm(unsigned long long n, struct sieve_t *s)
 {
-    unsigned long long m = 2;
+    unsigned long long m = 3;
     while (n > 1) {
         m = spm(n, m, s);
         n = n / m;
@@ -30,9 +30,9 @@ unsigned long long lpm(unsigned long long n, struct sieve_t *s)
 
 int main()
 {
-    unsigned long long input = 22751046341;
+    unsigned long long input = 2654435761; 
     unsigned long long start_time  = time(NULL);
-    struct sieve_t s = init_sieve(input);
+    struct sieve_t s = init_sieve(input + 1);
     printf("The largest prime factor of %llu is %llu\n", input, lpm(input, &s));
     unsigned long long end_time = time(NULL);
     printf("Time is %llu\n", end_time - start_time);
