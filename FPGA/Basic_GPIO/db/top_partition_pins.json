@@ -20,6 +20,22 @@
 					"strict" : false
 				},
 				{
+					"name" : "DS_EN5",
+					"strict" : false
+				},
+				{
+					"name" : "DS_EN6",
+					"strict" : false
+				},
+				{
+					"name" : "DS_EN7",
+					"strict" : false
+				},
+				{
+					"name" : "DS_EN8",
+					"strict" : false
+				},
+				{
 					"name" : "DS_A",
 					"strict" : false
 				},
@@ -45,6 +61,10 @@
 				},
 				{
 					"name" : "DS_G",
+					"strict" : false
+				},
+				{
+					"name" : "BUT",
 					"strict" : false
 				},
 				{

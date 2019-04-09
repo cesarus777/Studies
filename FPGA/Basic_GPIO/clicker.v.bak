@@ -1,0 +1,15 @@
+module clicker (
+    input but, clk,
+	 
+	 output q
+);
+
+assign q = cnt;
+
+reg [15:0]cnt = 0;
+
+always @(posedge clk) begin
+    cnt <= cnt + 1;
+end
+
+endmodule

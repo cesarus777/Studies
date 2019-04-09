@@ -1,0 +1,1 @@
+Warning (10268): Verilog HDL information at clicker.v(15): always construct contains both blocking and non-blocking assignments File: /home/julius/github/Studies/FPGA/Basic_GPIO/clicker.v Line: 15

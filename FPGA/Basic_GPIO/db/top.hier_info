@@ -1,9 +1,14 @@
 |top
-CLK => CLK.IN2
+CLK => CLK.IN3
+BUT => BUT.IN1
 DS_EN1 << hex_display:hex_display.anodes
 DS_EN2 << hex_display:hex_display.anodes
 DS_EN3 << hex_display:hex_display.anodes
 DS_EN4 << hex_display:hex_display.anodes
+DS_EN5 << hex_display:hex_display.anodes
+DS_EN6 << hex_display:hex_display.anodes
+DS_EN7 << hex_display:hex_display.anodes
+DS_EN8 << hex_display:hex_display.anodes
 DS_A << hex_display:hex_display.segments
 DS_B << hex_display:hex_display.segments
 DS_C << hex_display:hex_display.segments
@@ -52,8 +57,22 @@ clk => q[18].CLK
 clk => q[19].CLK
 clk => q[20].CLK
 clk => q[21].CLK
-clk => q[22].CLK
-clk => q[23].CLK
+clk_out <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|top|clk_div:clk_div3
+clk => q[0].CLK
+clk => q[1].CLK
+clk => q[2].CLK
+clk => q[3].CLK
+clk => q[4].CLK
+clk => q[5].CLK
+clk => q[6].CLK
+clk => q[7].CLK
+clk => q[8].CLK
+clk => q[9].CLK
+clk => q[10].CLK
+clk => q[11].CLK
 clk_out <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
 
 
@@ -92,29 +111,76 @@ q[14] <= cnt[14].DB_MAX_OUTPUT_PORT_TYPE
 q[15] <= cnt[15].DB_MAX_OUTPUT_PORT_TYPE
 
 
+|top|clicker:clicker
+but => always0.IN1
+clk => cnt[0].CLK
+clk => cnt[1].CLK
+clk => cnt[2].CLK
+clk => cnt[3].CLK
+clk => cnt[4].CLK
+clk => cnt[5].CLK
+clk => cnt[6].CLK
+clk => cnt[7].CLK
+clk => cnt[8].CLK
+clk => cnt[9].CLK
+clk => cnt[10].CLK
+clk => cnt[11].CLK
+clk => cnt[12].CLK
+clk => cnt[13].CLK
+clk => cnt[14].CLK
+clk => cnt[15].CLK
+clk => prev.CLK
+clk => buff[0].CLK
+clk => buff[1].CLK
+clk => buff[2].CLK
+clk => buff[3].CLK
+q <= cnt[0].DB_MAX_OUTPUT_PORT_TYPE
+
+
 |top|hex_display:hex_display
 clk => i[0].CLK
 clk => i[1].CLK
-data[0] => Mux0.IN14
-data[1] => Mux1.IN14
-data[2] => Mux2.IN14
-data[3] => Mux3.IN14
-data[4] => Mux0.IN10
-data[5] => Mux1.IN10
-data[6] => Mux2.IN10
-data[7] => Mux3.IN10
-data[8] => Mux0.IN6
-data[9] => Mux1.IN6
-data[10] => Mux2.IN6
-data[11] => Mux3.IN6
-data[12] => Mux0.IN2
-data[13] => Mux1.IN2
-data[14] => Mux2.IN2
-data[15] => Mux3.IN2
+clk => i[2].CLK
+data[0] => Mux0.IN33
+data[1] => Mux1.IN33
+data[2] => Mux2.IN33
+data[3] => Mux3.IN33
+data[4] => Mux0.IN29
+data[5] => Mux1.IN29
+data[6] => Mux2.IN29
+data[7] => Mux3.IN29
+data[8] => Mux0.IN25
+data[9] => Mux1.IN25
+data[10] => Mux2.IN25
+data[11] => Mux3.IN25
+data[12] => Mux0.IN21
+data[13] => Mux1.IN21
+data[14] => Mux2.IN21
+data[15] => Mux3.IN21
+cdata[0] => Mux0.IN17
+cdata[1] => Mux1.IN17
+cdata[2] => Mux2.IN17
+cdata[3] => Mux3.IN17
+cdata[4] => Mux0.IN13
+cdata[5] => Mux1.IN13
+cdata[6] => Mux2.IN13
+cdata[7] => Mux3.IN13
+cdata[8] => Mux0.IN9
+cdata[9] => Mux1.IN9
+cdata[10] => Mux2.IN9
+cdata[11] => Mux3.IN9
+cdata[12] => Mux0.IN5
+cdata[13] => Mux1.IN2
+cdata[14] => Mux2.IN2
+cdata[15] => Mux3.IN2
 anodes[0] <= ShiftLeft0.DB_MAX_OUTPUT_PORT_TYPE
 anodes[1] <= ShiftLeft0.DB_MAX_OUTPUT_PORT_TYPE
 anodes[2] <= ShiftLeft0.DB_MAX_OUTPUT_PORT_TYPE
 anodes[3] <= ShiftLeft0.DB_MAX_OUTPUT_PORT_TYPE
+anodes[4] <= ShiftLeft0.DB_MAX_OUTPUT_PORT_TYPE
+anodes[5] <= ShiftLeft0.DB_MAX_OUTPUT_PORT_TYPE
+anodes[6] <= ShiftLeft0.DB_MAX_OUTPUT_PORT_TYPE
+anodes[7] <= ShiftLeft0.DB_MAX_OUTPUT_PORT_TYPE
 segments[0] <= hex_to_seg:hex_to_seg.segments
 segments[1] <= hex_to_seg:hex_to_seg.segments
 segments[2] <= hex_to_seg:hex_to_seg.segments
