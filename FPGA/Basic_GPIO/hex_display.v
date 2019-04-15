@@ -1,6 +1,6 @@
 module hex_display(
     input clk,
-    input [15:0]data,
+    input [31:0]data,
 	 input [15:0]cdata,
 
     output [7:0]anodes,
@@ -12,7 +12,7 @@ module hex_display(
 *   Write logic for dynamic indication here.
 */
 
-reg [2:0]i = 0;
+reg [3:0]i = 0;
 
 assign anodes = (8'b1 << i);
 
@@ -25,6 +25,7 @@ assign in_data[31:16] = cdata[15:0];
 assign in_data[15:0] = data[15:0];
 
 wire [3:0]b = in_data[i * 4 +: 4];
+//wire [3:0]b = data[i * 4 +: 4];
 
 hex_to_seg hex_to_seg(.data(b), .segments(segments));
 

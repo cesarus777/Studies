@@ -1,5 +1,5 @@
 Analysis & Synthesis report for top
-Tue Apr  9 11:10:37 2019
+Tue Apr  9 15:22:27 2019
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -13,19 +13,17 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. Registers Removed During Synthesis
-  9. Removed Registers Triggering Further Register Optimizations
- 10. General Register Statistics
- 11. Multiplexer Restructuring Statistics (Restructuring Performed)
- 12. Parameter Settings for User Entity Instance: clk_div:clk_div1
- 13. Parameter Settings for User Entity Instance: clk_div:clk_div2
- 14. Parameter Settings for User Entity Instance: clk_div:clk_div3
- 15. Parameter Settings for User Entity Instance: counter:counter
- 16. Port Connectivity Checks: "clicker:clicker"
- 17. Post-Synthesis Netlist Statistics for Top Partition
- 18. Elapsed Time Per Partition
- 19. Analysis & Synthesis Messages
- 20. Analysis & Synthesis Suppressed Messages
+  8. General Register Statistics
+  9. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 10. Parameter Settings for User Entity Instance: clk_div:clk_div1
+ 11. Parameter Settings for User Entity Instance: clk_div:clk_div2
+ 12. Parameter Settings for User Entity Instance: clk_div:clk_div3
+ 13. Parameter Settings for User Entity Instance: counter:counter
+ 14. Parameter Settings for User Entity Instance: counter:ccounter
+ 15. Port Connectivity Checks: "hex_display:hex_display"
+ 16. Post-Synthesis Netlist Statistics for Top Partition
+ 17. Elapsed Time Per Partition
+ 18. Analysis & Synthesis Messages
 
 
 
@@ -51,15 +49,15 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Tue Apr  9 11:10:37 2019       ;
+; Analysis & Synthesis Status        ; Successful - Tue Apr  9 15:22:27 2019       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; top                                         ;
 ; Top-level Entity Name              ; top                                         ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 116                                         ;
-;     Total combinational functions  ; 116                                         ;
-;     Dedicated logic registers      ; 70                                          ;
-; Total registers                    ; 70                                          ;
+; Total logic elements               ; 146                                         ;
+;     Total combinational functions  ; 146                                         ;
+;     Dedicated logic registers      ; 92                                          ;
+; Total registers                    ; 92                                          ;
 ; Total pins                         ; 17                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
@@ -180,7 +178,6 @@ refer to the applicable agreement for further details.
 ; counter.v                        ; yes             ; User Verilog HDL File  ; /home/julius/github/Studies/FPGA/Basic_GPIO/counter.v     ;         ;
 ; clk_div.v                        ; yes             ; User Verilog HDL File  ; /home/julius/github/Studies/FPGA/Basic_GPIO/clk_div.v     ;         ;
 ; top.v                            ; yes             ; User Verilog HDL File  ; /home/julius/github/Studies/FPGA/Basic_GPIO/top.v         ;         ;
-; clicker.v                        ; yes             ; User Verilog HDL File  ; /home/julius/github/Studies/FPGA/Basic_GPIO/clicker.v     ;         ;
 +----------------------------------+-----------------+------------------------+-----------------------------------------------------------+---------+
 
 
@@ -189,20 +186,20 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+-----------+
 ; Resource                                    ; Usage     ;
 +---------------------------------------------+-----------+
-; Estimated Total logic elements              ; 116       ;
+; Estimated Total logic elements              ; 146       ;
 ;                                             ;           ;
-; Total combinational functions               ; 116       ;
+; Total combinational functions               ; 146       ;
 ; Logic element usage by number of LUT inputs ;           ;
-;     -- 4 input functions                    ; 35        ;
-;     -- 3 input functions                    ; 16        ;
-;     -- <=2 input functions                  ; 65        ;
+;     -- 4 input functions                    ; 48        ;
+;     -- 3 input functions                    ; 12        ;
+;     -- <=2 input functions                  ; 86        ;
 ;                                             ;           ;
 ; Logic elements by mode                      ;           ;
-;     -- normal mode                          ; 62        ;
-;     -- arithmetic mode                      ; 54        ;
+;     -- normal mode                          ; 68        ;
+;     -- arithmetic mode                      ; 78        ;
 ;                                             ;           ;
-; Total registers                             ; 70        ;
-;     -- Dedicated logic registers            ; 70        ;
+; Total registers                             ; 92        ;
+;     -- Dedicated logic registers            ; 92        ;
 ;     -- I/O registers                        ; 0         ;
 ;                                             ;           ;
 ; I/O pins                                    ; 17        ;
@@ -210,9 +207,9 @@ refer to the applicable agreement for further details.
 ; Embedded Multiplier 9-bit elements          ; 0         ;
 ;                                             ;           ;
 ; Maximum fan-out node                        ; CLK~input ;
-; Maximum fan-out                             ; 46        ;
-; Total fan-out                               ; 481       ;
-; Average fan-out                             ; 2.19      ;
+; Maximum fan-out                             ; 56        ;
+; Total fan-out                               ; 605       ;
+; Average fan-out                             ; 2.22      ;
 +---------------------------------------------+-----------+
 
 
@@ -221,37 +218,16 @@ refer to the applicable agreement for further details.
 +-------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------+-------------+--------------+
 ; Compilation Hierarchy Node    ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                ; Entity Name ; Library Name ;
 +-------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------+-------------+--------------+
-; |top                          ; 116 (0)             ; 70 (0)                    ; 0           ; 0            ; 0       ; 0         ; 17   ; 0            ; |top                                               ; top         ; work         ;
-;    |clicker:clicker|          ; 9 (9)               ; 5 (5)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|clicker:clicker                               ; clicker     ; work         ;
+; |top                          ; 146 (0)             ; 92 (0)                    ; 0           ; 0            ; 0       ; 0         ; 17   ; 0            ; |top                                               ; top         ; work         ;
 ;    |clk_div:clk_div1|         ; 16 (16)             ; 12 (12)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|clk_div:clk_div1                              ; clk_div     ; work         ;
-;    |clk_div:clk_div2|         ; 29 (29)             ; 22 (22)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|clk_div:clk_div2                              ; clk_div     ; work         ;
-;    |clk_div:clk_div3|         ; 16 (16)             ; 12 (12)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|clk_div:clk_div3                              ; clk_div     ; work         ;
+;    |clk_div:clk_div2|         ; 32 (32)             ; 24 (24)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|clk_div:clk_div2                              ; clk_div     ; work         ;
+;    |clk_div:clk_div3|         ; 27 (27)             ; 20 (20)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|clk_div:clk_div3                              ; clk_div     ; work         ;
+;    |counter:ccounter|         ; 16 (16)             ; 16 (16)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|counter:ccounter                              ; counter     ; work         ;
 ;    |counter:counter|          ; 16 (16)             ; 16 (16)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|counter:counter                               ; counter     ; work         ;
-;    |hex_display:hex_display|  ; 30 (23)             ; 3 (3)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|hex_display:hex_display                       ; hex_display ; work         ;
+;    |hex_display:hex_display|  ; 39 (32)             ; 4 (4)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|hex_display:hex_display                       ; hex_display ; work         ;
 ;       |hex_to_seg:hex_to_seg| ; 7 (7)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|hex_display:hex_display|hex_to_seg:hex_to_seg ; hex_to_seg  ; work         ;
 +-------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
-
-
-+-----------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                          ;
-+----------------------------------------+------------------------------------+
-; Register name                          ; Reason for Removal                 ;
-+----------------------------------------+------------------------------------+
-; clicker:clicker|prev                   ; Merged with clicker:clicker|cnt[0] ;
-; clicker:clicker|cnt[1..15]             ; Lost fanout                        ;
-; Total Number of Removed Registers = 16 ;                                    ;
-+----------------------------------------+------------------------------------+
-
-
-+-----------------------------------------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                                                           ;
-+------------------------+--------------------+-------------------------------------------------------------------------+
-; Register name          ; Reason for Removal ; Registers Removed due to This Register                                  ;
-+------------------------+--------------------+-------------------------------------------------------------------------+
-; clicker:clicker|cnt[1] ; Lost Fanouts       ; clicker:clicker|cnt[2], clicker:clicker|cnt[3], clicker:clicker|cnt[4], ;
-;                        ;                    ; clicker:clicker|cnt[5]                                                  ;
-+------------------------+--------------------+-------------------------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -259,7 +235,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 70    ;
+; Total registers                              ; 92    ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
@@ -269,14 +245,15 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                  ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output        ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------+
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |top|clicker:clicker|buff[0]      ;
-; 8:1                ; 3 bits    ; 15 LEs        ; 9 LEs                ; 6 LEs                  ; No         ; |top|hex_display:hex_display|Mux1 ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                        ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output              ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------+
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; No         ; |top|hex_display:hex_display|ShiftLeft0 ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; No         ; |top|hex_display:hex_display|ShiftLeft0 ;
+; 8:1                ; 4 bits    ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; No         ; |top|hex_display:hex_display|Mux3       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------+
 
 
 +---------------------------------------------------------------+
@@ -294,7 +271,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+-------+--------------------------------------+
 ; Parameter Name ; Value ; Type                                 ;
 +----------------+-------+--------------------------------------+
-; X              ; 22    ; Signed Integer                       ;
+; X              ; 24    ; Signed Integer                       ;
 +----------------+-------+--------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
@@ -304,7 +281,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+-------+--------------------------------------+
 ; Parameter Name ; Value ; Type                                 ;
 +----------------+-------+--------------------------------------+
-; X              ; 12    ; Signed Integer                       ;
+; X              ; 20    ; Signed Integer                       ;
 +----------------+-------+--------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
@@ -319,13 +296,23 @@ Note: In order to hide this table in the UI and the text report file, please set
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "clicker:clicker"                                                                                                                                                        ;
-+------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port ; Type   ; Severity ; Details                                                                                                                                                                 ;
-+------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; q    ; Output ; Warning  ; Output or bidir port (1 bits) is smaller than the port expression (16 bits) it drives.  The 15 most-significant bit(s) in the port expression will be connected to GND. ;
-+------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++---------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: counter:ccounter ;
++----------------+-------+--------------------------------------+
+; Parameter Name ; Value ; Type                                 ;
++----------------+-------+--------------------------------------+
+; W              ; 16    ; Signed Integer                       ;
++----------------+-------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "hex_display:hex_display"                                                                                                                        ;
++------+-------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                                                                                                          ;
++------+-------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+; data ; Input ; Warning  ; Input port expression (16 bits) is smaller than the input port (32 bits) it drives.  Extra input bit(s) "data[31..16]" will be connected to GND. ;
++------+-------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 +-----------------------------------------------------+
@@ -334,20 +321,20 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 17                          ;
-; cycloneiii_ff         ; 70                          ;
-;     plain             ; 70                          ;
-; cycloneiii_lcell_comb ; 122                         ;
-;     arith             ; 54                          ;
-;         2 data inputs ; 50                          ;
-;         3 data inputs ; 4                           ;
-;     normal            ; 68                          ;
-;         1 data inputs ; 15                          ;
-;         2 data inputs ; 6                           ;
-;         3 data inputs ; 12                          ;
-;         4 data inputs ; 35                          ;
+; cycloneiii_ff         ; 92                          ;
+;     plain             ; 92                          ;
+; cycloneiii_lcell_comb ; 151                         ;
+;     arith             ; 78                          ;
+;         2 data inputs ; 73                          ;
+;         3 data inputs ; 5                           ;
+;     normal            ; 73                          ;
+;         1 data inputs ; 16                          ;
+;         2 data inputs ; 2                           ;
+;         3 data inputs ; 7                           ;
+;         4 data inputs ; 48                          ;
 ;                       ;                             ;
 ; Max LUT depth         ; 5.00                        ;
-; Average LUT depth     ; 2.50                        ;
+; Average LUT depth     ; 2.70                        ;
 +-----------------------+-----------------------------+
 
 
@@ -366,13 +353,13 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Tue Apr  9 11:10:27 2019
+    Info: Processing started: Tue Apr  9 15:22:17 2019
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Basic_GPIO -c top
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
 Info (12021): Found 2 design units, including 2 entities, in source file hex_display.v
     Info (12023): Found entity 1: hex_display File: /home/julius/github/Studies/FPGA/Basic_GPIO/hex_display.v Line: 1
-    Info (12023): Found entity 2: hex_to_seg File: /home/julius/github/Studies/FPGA/Basic_GPIO/hex_display.v Line: 33
+    Info (12023): Found entity 2: hex_to_seg File: /home/julius/github/Studies/FPGA/Basic_GPIO/hex_display.v Line: 34
 Info (12021): Found 1 design units, including 1 entities, in source file counter.v
     Info (12023): Found entity 1: counter File: /home/julius/github/Studies/FPGA/Basic_GPIO/counter.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file clk_div.v
@@ -381,119 +368,33 @@ Info (12021): Found 1 design units, including 1 entities, in source file top.v
     Info (12023): Found entity 1: top File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file clicker.v
     Info (12023): Found entity 1: clicker File: /home/julius/github/Studies/FPGA/Basic_GPIO/clicker.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file alien_debouncer.v
+    Info (12023): Found entity 1: button_debouncer File: /home/julius/github/Studies/FPGA/Basic_GPIO/alien_debouncer.v Line: 1
 Info (12127): Elaborating entity "top" for the top level hierarchy
-Info (12128): Elaborating entity "clk_div" for hierarchy "clk_div:clk_div1" File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 24
+Info (12128): Elaborating entity "clk_div" for hierarchy "clk_div:clk_div1" File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 26
 Warning (10230): Verilog HDL assignment warning at clk_div.v(13): truncated value with size 32 to match size of target (12) File: /home/julius/github/Studies/FPGA/Basic_GPIO/clk_div.v Line: 13
-Info (12128): Elaborating entity "clk_div" for hierarchy "clk_div:clk_div2" File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 25
-Warning (10230): Verilog HDL assignment warning at clk_div.v(13): truncated value with size 32 to match size of target (22) File: /home/julius/github/Studies/FPGA/Basic_GPIO/clk_div.v Line: 13
-Info (12128): Elaborating entity "counter" for hierarchy "counter:counter" File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 28
+Info (12128): Elaborating entity "clk_div" for hierarchy "clk_div:clk_div2" File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 27
+Warning (10230): Verilog HDL assignment warning at clk_div.v(13): truncated value with size 32 to match size of target (24) File: /home/julius/github/Studies/FPGA/Basic_GPIO/clk_div.v Line: 13
+Info (12128): Elaborating entity "clk_div" for hierarchy "clk_div:clk_div3" File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 28
+Warning (10230): Verilog HDL assignment warning at clk_div.v(13): truncated value with size 32 to match size of target (20) File: /home/julius/github/Studies/FPGA/Basic_GPIO/clk_div.v Line: 13
+Info (12128): Elaborating entity "counter" for hierarchy "counter:counter" File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 30
 Warning (10230): Verilog HDL assignment warning at counter.v(16): truncated value with size 32 to match size of target (16) File: /home/julius/github/Studies/FPGA/Basic_GPIO/counter.v Line: 16
-Info (12128): Elaborating entity "clicker" for hierarchy "clicker:clicker" File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 30
-Warning (10230): Verilog HDL assignment warning at clicker.v(7): truncated value with size 16 to match size of target (1) File: /home/julius/github/Studies/FPGA/Basic_GPIO/clicker.v Line: 7
-Warning (10230): Verilog HDL assignment warning at clicker.v(17): truncated value with size 32 to match size of target (4) File: /home/julius/github/Studies/FPGA/Basic_GPIO/clicker.v Line: 17
-Warning (10230): Verilog HDL assignment warning at clicker.v(23): truncated value with size 32 to match size of target (16) File: /home/julius/github/Studies/FPGA/Basic_GPIO/clicker.v Line: 23
-Info (12128): Elaborating entity "hex_display" for hierarchy "hex_display:hex_display" File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 32
-Info (12128): Elaborating entity "hex_to_seg" for hierarchy "hex_display:hex_display|hex_to_seg:hex_to_seg" File: /home/julius/github/Studies/FPGA/Basic_GPIO/hex_display.v Line: 29
-Warning (12011): Net is missing source, defaulting to GND
-    Warning (12110): Net "click_data[15]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[14]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[13]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[12]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[11]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[10]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[9]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[8]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[7]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[6]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[5]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[4]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[3]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[2]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[1]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-Warning (12011): Net is missing source, defaulting to GND
-    Warning (12110): Net "click_data[15]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[14]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[13]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[12]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[11]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[10]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[9]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[8]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[7]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[6]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[5]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[4]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[3]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[2]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[1]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-Warning (12011): Net is missing source, defaulting to GND
-    Warning (12110): Net "click_data[15]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[14]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[13]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[12]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[11]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[10]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[9]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[8]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[7]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[6]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[5]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[4]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[3]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[2]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[1]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-Warning (12011): Net is missing source, defaulting to GND
-    Warning (12110): Net "click_data[15]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[14]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[13]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[12]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[11]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[10]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[9]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[8]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[7]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[6]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[5]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[4]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[3]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[2]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[1]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-Warning (12011): Net is missing source, defaulting to GND
-    Warning (12110): Net "click_data[15]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[14]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[13]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[12]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[11]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[10]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[9]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[8]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[7]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[6]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[5]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[4]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[3]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[2]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
-    Warning (12110): Net "click_data[1]" is missing source, defaulting to GND File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 17
+Info (12128): Elaborating entity "hex_display" for hierarchy "hex_display:hex_display" File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 35
+Info (12128): Elaborating entity "hex_to_seg" for hierarchy "hex_display:hex_display|hex_to_seg:hex_to_seg" File: /home/julius/github/Studies/FPGA/Basic_GPIO/hex_display.v Line: 30
 Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Info (286030): Timing-Driven Synthesis is running
-Info (17049): 15 registers lost all their fanouts during netlist optimizations.
-Info (144001): Generated suppressed messages file /home/julius/github/Studies/FPGA/Basic_GPIO/output_files/top.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 133 device resources after synthesis - the final resource count might be different
+Warning (21074): Design contains 1 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "BUT" File: /home/julius/github/Studies/FPGA/Basic_GPIO/top.v Line: 2
+Info (21057): Implemented 163 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 2 input pins
     Info (21059): Implemented 15 output pins
-    Info (21061): Implemented 116 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 88 warnings
-    Info: Peak virtual memory: 983 megabytes
-    Info: Processing ended: Tue Apr  9 11:10:37 2019
+    Info (21061): Implemented 146 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 8 warnings
+    Info: Peak virtual memory: 982 megabytes
+    Info: Processing ended: Tue Apr  9 15:22:27 2019
     Info: Elapsed time: 00:00:10
     Info: Total CPU time (on all processors): 00:00:26
-
-
-+------------------------------------------+
-; Analysis & Synthesis Suppressed Messages ;
-+------------------------------------------+
-The suppressed messages can be found in /home/julius/github/Studies/FPGA/Basic_GPIO/output_files/top.map.smsg.
 
 

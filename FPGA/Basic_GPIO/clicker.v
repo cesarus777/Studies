@@ -4,23 +4,10 @@ module clicker (
 	 output q
 );
 
-assign q = cnt;
+wire sw_down;
 
-reg [15:0]cnt = 0;
+button_debouncer  debouncer(.clk_i(clk), .rst_i(),	.sw_i(but), .sw_state_o(), .sw_down_o(sw_down), .sw_up_o());	
 
-reg [3:0]buff = 0;
-
-reg prev = 0;
-
-always @(posedge clk) begin
-    if (but != prev)
-	     buff <= buff + 1;
-	 if (buff == 10)
-	     buff <= 0;
-	 if (buff == 10)
-     	  prev = ~prev;
-	 if (buff == 10)
-	     cnt <= cnt + 1;
-end
+counter #(.W(16)) count(.clk(sw_down), .q(q));
 
 endmodule 

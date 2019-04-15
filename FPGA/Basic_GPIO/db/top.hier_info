@@ -1,21 +1,21 @@
 |top
 CLK => CLK.IN3
-BUT => BUT.IN1
-DS_EN1 << hex_display:hex_display.anodes
-DS_EN2 << hex_display:hex_display.anodes
-DS_EN3 << hex_display:hex_display.anodes
-DS_EN4 << hex_display:hex_display.anodes
-DS_EN5 << hex_display:hex_display.anodes
-DS_EN6 << hex_display:hex_display.anodes
-DS_EN7 << hex_display:hex_display.anodes
-DS_EN8 << hex_display:hex_display.anodes
-DS_A << hex_display:hex_display.segments
-DS_B << hex_display:hex_display.segments
-DS_C << hex_display:hex_display.segments
-DS_D << hex_display:hex_display.segments
-DS_E << hex_display:hex_display.segments
-DS_F << hex_display:hex_display.segments
-DS_G << hex_display:hex_display.segments
+BUT => ~NO_FANOUT~
+DS_EN1 <= hex_display:hex_display.anodes
+DS_EN2 <= hex_display:hex_display.anodes
+DS_EN3 <= hex_display:hex_display.anodes
+DS_EN4 <= hex_display:hex_display.anodes
+DS_EN5 <= hex_display:hex_display.anodes
+DS_EN6 <= hex_display:hex_display.anodes
+DS_EN7 <= hex_display:hex_display.anodes
+DS_EN8 <= hex_display:hex_display.anodes
+DS_A <= hex_display:hex_display.segments
+DS_B <= hex_display:hex_display.segments
+DS_C <= hex_display:hex_display.segments
+DS_D <= hex_display:hex_display.segments
+DS_E <= hex_display:hex_display.segments
+DS_F <= hex_display:hex_display.segments
+DS_G <= hex_display:hex_display.segments
 
 
 |top|clk_div:clk_div1
@@ -57,6 +57,8 @@ clk => q[18].CLK
 clk => q[19].CLK
 clk => q[20].CLK
 clk => q[21].CLK
+clk => q[22].CLK
+clk => q[23].CLK
 clk_out <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
 
 
@@ -73,6 +75,14 @@ clk => q[8].CLK
 clk => q[9].CLK
 clk => q[10].CLK
 clk => q[11].CLK
+clk => q[12].CLK
+clk => q[13].CLK
+clk => q[14].CLK
+clk => q[15].CLK
+clk => q[16].CLK
+clk => q[17].CLK
+clk => q[18].CLK
+clk => q[19].CLK
 clk_out <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
 
 
@@ -111,8 +121,7 @@ q[14] <= cnt[14].DB_MAX_OUTPUT_PORT_TYPE
 q[15] <= cnt[15].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|top|clicker:clicker
-but => always0.IN1
+|top|counter:ccounter
 clk => cnt[0].CLK
 clk => cnt[1].CLK
 clk => cnt[2].CLK
@@ -129,18 +138,29 @@ clk => cnt[12].CLK
 clk => cnt[13].CLK
 clk => cnt[14].CLK
 clk => cnt[15].CLK
-clk => prev.CLK
-clk => buff[0].CLK
-clk => buff[1].CLK
-clk => buff[2].CLK
-clk => buff[3].CLK
-q <= cnt[0].DB_MAX_OUTPUT_PORT_TYPE
+q[0] <= cnt[0].DB_MAX_OUTPUT_PORT_TYPE
+q[1] <= cnt[1].DB_MAX_OUTPUT_PORT_TYPE
+q[2] <= cnt[2].DB_MAX_OUTPUT_PORT_TYPE
+q[3] <= cnt[3].DB_MAX_OUTPUT_PORT_TYPE
+q[4] <= cnt[4].DB_MAX_OUTPUT_PORT_TYPE
+q[5] <= cnt[5].DB_MAX_OUTPUT_PORT_TYPE
+q[6] <= cnt[6].DB_MAX_OUTPUT_PORT_TYPE
+q[7] <= cnt[7].DB_MAX_OUTPUT_PORT_TYPE
+q[8] <= cnt[8].DB_MAX_OUTPUT_PORT_TYPE
+q[9] <= cnt[9].DB_MAX_OUTPUT_PORT_TYPE
+q[10] <= cnt[10].DB_MAX_OUTPUT_PORT_TYPE
+q[11] <= cnt[11].DB_MAX_OUTPUT_PORT_TYPE
+q[12] <= cnt[12].DB_MAX_OUTPUT_PORT_TYPE
+q[13] <= cnt[13].DB_MAX_OUTPUT_PORT_TYPE
+q[14] <= cnt[14].DB_MAX_OUTPUT_PORT_TYPE
+q[15] <= cnt[15].DB_MAX_OUTPUT_PORT_TYPE
 
 
 |top|hex_display:hex_display
 clk => i[0].CLK
 clk => i[1].CLK
 clk => i[2].CLK
+clk => i[3].CLK
 data[0] => Mux0.IN33
 data[1] => Mux1.IN33
 data[2] => Mux2.IN33
@@ -157,6 +177,22 @@ data[12] => Mux0.IN21
 data[13] => Mux1.IN21
 data[14] => Mux2.IN21
 data[15] => Mux3.IN21
+data[16] => ~NO_FANOUT~
+data[17] => ~NO_FANOUT~
+data[18] => ~NO_FANOUT~
+data[19] => ~NO_FANOUT~
+data[20] => ~NO_FANOUT~
+data[21] => ~NO_FANOUT~
+data[22] => ~NO_FANOUT~
+data[23] => ~NO_FANOUT~
+data[24] => ~NO_FANOUT~
+data[25] => ~NO_FANOUT~
+data[26] => ~NO_FANOUT~
+data[27] => ~NO_FANOUT~
+data[28] => ~NO_FANOUT~
+data[29] => ~NO_FANOUT~
+data[30] => ~NO_FANOUT~
+data[31] => ~NO_FANOUT~
 cdata[0] => Mux0.IN17
 cdata[1] => Mux1.IN17
 cdata[2] => Mux2.IN17
