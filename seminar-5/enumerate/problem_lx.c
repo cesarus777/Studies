@@ -1,38 +1,29 @@
 #include <ctype.h>
 #include <stdlib.h>
+
 #include "problem_lx.h"
 
 int islbrace(char symbol)
 {
-    if (symbol == '(')
-        return 1;
-    return 0;
+    return (symbol == '(') ? 1 : 0;
 }
 
 int isrbrace(char symbol)
 {
-    if (symbol == ')')
-        return 1;
-    return 0;
+    return (symbol == ')') ? 1 : 0;
 }
 
-void larr_realloc_check(struct lex_array_t larr)
+void larr_realloc_check(struct lex_array_t *larr)
 {
-    if (!(larr.size - larr.capacity)) {
-        struct lex_array_t *r = realloc(larr.lexems, larr.capacity + ICAP);
-	assert(r != 0);
-        larr.capacity += ICAP;
+    if ((larr->capacity - larr->size) == 1) {
+        struct lexem_t *r = (struct lexem_t *) realloc(larr->lexems,
+                                                       (larr->size +
+                                                        ICAP) *
+                                                       sizeof(struct
+                                                              lexem_t));
+        assert(r != NULL);
+        larr->capacity += ICAP;
     }
-}
-
-int pown( int n, int k) {
-	if(n == 0) return 0;
-	if(k == 0) return 1;
-	int res = n;
-	for(--k; k > 0; --k) {
-		res *= n;
-	}
-	return res;
 }
 
 struct lex_array_t lex_string(const char *str)
@@ -53,17 +44,10 @@ struct lex_array_t lex_string(const char *str)
     //   if char reminds brace, lex brace
     //   if char reminds operation, lex operation
     //   otherwise free lex array, return NULL
-    for (int i = 0; str[i] != '\0'; ++i) {
-/*
-        if (isalpha(str[i])) {
-            free(larr.lexems);
-            struct lex_array_t l = { NULL, 0, 0 };
-	    larr = l;
-	    break;
-        }
-*/
 
-        larr_realloc_check(larr);
+    for (int i = 0; str[i] != '\0'; ++i) {
+
+        larr_realloc_check(&larr);
 
         if (isspace(str[i]))
             continue;
@@ -83,58 +67,75 @@ struct lex_array_t lex_string(const char *str)
         }
 
         if (!isalnum(str[i])) {
+            if (larr.lexems[larr.size - 1].kind == OP) {
+                free(larr.lexems);
+                struct lex_array_t l = {NULL, 0, 0};
+                return l;
+            }
             if (str[i] == '+') {
                 struct lexem_t l = {
-                OP, ADD};
+                    OP, ADD
+                };
                 larr.lexems[larr.size] = l;
                 ++larr.size;
                 continue;
-	    }
+            }
             if (str[i] == '-') {
                 struct lexem_t m = {
-                OP, SUB};
+                    OP, SUB
+                };
                 larr.lexems[larr.size] = m;
                 ++larr.size;
                 continue;
-	    }
+            }
             if (str[i] == '*') {
                 struct lexem_t n = {
-                OP, MUL};
+                    OP, MUL
+                };
                 larr.lexems[larr.size] = n;
                 ++larr.size;
                 continue;
-	    }
+            }
             if (str[i] == '/') {
                 struct lexem_t k = {
-                OP, DIV};
+                    OP, DIV
+                };
                 larr.lexems[larr.size] = k;
                 ++larr.size;
                 continue;
             }
+
             free(larr.lexems);
-	    struct lex_array_t l = { NULL, 0, 0 };
+            struct lex_array_t l = {NULL, 0, 0};
             return l;
         }
 
-        if(isdigit(str[i])) {
-	int read = 0;
-        while (isdigit(str[i])) {
-            read = 10 * read + ((int) (str[i] - '0'));
-            if (!isdigit(str[i + 1])) {
-                struct lexem_t l = {
-                NUM, read};
-                larr.lexems[larr.size] = l;
-                ++larr.size;
-                break;
+        if (isdigit(str[i])) {
+            if (larr.lexems[larr.size - 1].kind == NUM) {
+                free(larr.lexems);
+                struct lex_array_t l = {NULL, 0, 0};
+                return l;
             }
-            ++i;
+            int read = 0;
+            while (isdigit(str[i])) {
+                read = 10 * read + ((int) (str[i] - '0'));
+                if (!isdigit(str[i + 1])) {
+                    struct lexem_t l = {
+                        NUM, read
+                    };
+                    larr.lexems[larr.size] = l;
+                    ++larr.size;
+                    break;
+                }
+                ++i;
+            }
+            continue;
         }
-	continue;
-	}
 
         struct lex_array_t l = {
-        NULL, 0, 0};
-	larr = l;
+            NULL, 0, 0
+        };
+        larr = l;
         break;
     }
 
@@ -145,16 +146,16 @@ static void print_op(enum operation_t opcode)
 {
     switch (opcode) {
     case ADD:
-        printf(" PLUS");
+        printf("PLUS ");
         break;
     case SUB:
-        printf(" MINUS");
+        printf("MINUS ");
         break;
     case MUL:
-        printf(" MUL");
+        printf("MUL ");
         break;
     case DIV:
-        printf(" DIV");
+        printf("DIV ");
         break;
     default:
         assert(0 && "unknown opcode");
@@ -165,10 +166,10 @@ static void print_brace(enum braces_t bracetype)
 {
     switch (bracetype) {
     case LBRAC:
-        printf(" LBRAC");
+        printf("LBRAC ");
         break;
     case RBRAC:
-        printf(" RBRAC");
+        printf("RBRAC ");
         break;
     default:
         assert(0 && "unknown bracket");
@@ -177,7 +178,7 @@ static void print_brace(enum braces_t bracetype)
 
 static void print_num(int n)
 {
-    printf(" NUMBER:%d", n);
+    printf("NUMBER:%d ", n);
 }
 
 void print_lexem(struct lexem_t lxm)
@@ -203,4 +204,5 @@ void dump_lexarray(struct lex_array_t pl)
     assert(pl.lexems != NULL);
     for (i = 0; i < pl.size; ++i)
         print_lexem(pl.lexems[i]);
+    printf("\n");
 }

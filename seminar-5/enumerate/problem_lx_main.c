@@ -18,7 +18,7 @@ int main() {
   struct lex_array_t larr;
   char inp[MAXLEN] = {0};
   
-  res = scanf("%s", inp);
+  res = scanf("%1024c", inp);
   assert(res == 1);
   
   larr = lex_string(inp);
