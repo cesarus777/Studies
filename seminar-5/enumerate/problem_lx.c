@@ -132,7 +132,15 @@ lex_string (const char *str)
 	      struct lex_array_t l = { NULL, 0, 0 };
 	      return l;
 	    }
-	  int read = 0;
+    char *strp;
+	  int read = (int) strtol((str + i), &strp, 10);
+    struct lexem_t l = {NUM, read};
+    larr.lexems[larr.size] = l;
+    ++larr.size;
+    i = strp - str;
+
+// previous realisation of number reading
+#if 0
 	  while (isdigit (str[i]))
 	    {
 	      read = 10 * read + ((int) (str[i] - '0'));
@@ -147,6 +155,8 @@ lex_string (const char *str)
 		}
 	      ++i;
 	    }
+#endif
+
 	  continue;
 	}
 
