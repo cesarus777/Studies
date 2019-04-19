@@ -137,7 +137,7 @@ lex_string (const char *str)
     struct lexem_t l = {NUM, read};
     larr.lexems[larr.size] = l;
     ++larr.size;
-    i = strp - str;
+    i = strp - str - 1;
 
 // previous realisation of number reading
 #if 0
