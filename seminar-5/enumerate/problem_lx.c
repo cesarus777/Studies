@@ -50,6 +50,8 @@ lex_string (const char *str)
   //   if char reminds operation, lex operation
   //   otherwise free lex array, return NULL
 
+  int lbn = 0, rbn = 0;
+
   for (int i = 0; str[i] != '\0'; ++i)
     {
 
@@ -63,6 +65,7 @@ lex_string (const char *str)
 	  struct lexem_t l = { BRACE, LBRAC };
 	  larr.lexems[larr.size] = l;
 	  ++larr.size;
+	  ++lbn;
 	  continue;
 	}
 
@@ -71,6 +74,7 @@ lex_string (const char *str)
 	  struct lexem_t l = { BRACE, RBRAC };
 	  larr.lexems[larr.size] = l;
 	  ++larr.size;
+	  ++rbn;
 	  continue;
 	}
 
@@ -132,12 +136,12 @@ lex_string (const char *str)
 	      struct lex_array_t l = { NULL, 0, 0 };
 	      return l;
 	    }
-    char *strp;
-	  int read = (int) strtol((str + i), &strp, 10);
-    struct lexem_t l = {NUM, read};
-    larr.lexems[larr.size] = l;
-    ++larr.size;
-    i = strp - str - 1;
+	  char *strp;
+	  int read = (int) strtol ((str + i), &strp, 10);
+	  struct lexem_t l = { NUM, read };
+	  larr.lexems[larr.size] = l;
+	  ++larr.size;
+	  i = strp - str - 1;
 
 // previous realisation of number reading
 #if 0
@@ -165,6 +169,12 @@ lex_string (const char *str)
       };
       larr = l;
       break;
+    }
+
+  if (lbn != rbn)
+    {
+      struct lex_array_t l = { NULL, 0, 0 };
+      larr = l;
     }
 
   return larr;
