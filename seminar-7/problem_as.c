@@ -4,6 +4,7 @@
 
 #include "additions.h"
 #include "codecs.h"
+#include "lexer.h"
 
 int
 main (int argc, char **argv)
@@ -17,6 +18,20 @@ main (int argc, char **argv)
   int mode = 0, file_flag = 0;
   codec_init (&mode, &file_flag, argc, argv);
 
+  if (file_flag == 0) {
+    struct command cmd = lex_analysis_one (mode, argv[2]);
+    codec_one (mode, cmd);
+  }
+
+  if (file_flag == 1) {
+    FILE *input, *output;
+    files_open (&input, &output, argv);
+    assert ((input != NULL) && (output != NULL));
+    struct command *cmds = lex_analysis (mode, input, output);
+  }
+
+
+#if 0
   if (file_flag == 0)
     {
       codec_one (&mode, argv[2]);
@@ -65,4 +80,5 @@ main (int argc, char **argv)
       fclose (input);
       fclose (output);
     }
+#endif
 }

@@ -2,18 +2,13 @@
 CC=gcc
 
 # compilation flags
-CFLAGS=-g -c
+CFLAGS=
 
-all: lexem clean
+all: lexem.out
 
-lexem: problem_lx_main.o problem_lx.o
-	$(CC) problem_lx_main.o problem_lx.o -g -o lexem.out
+lexem.out: problem_lx_main.o problem_lx.o symbol_check.o
+	$(CC) $? -o $@
 
-problem_lx_main.o: problem_lx_main.c
-	$(CC) $(CFLAGS) problem_lx_main.c
-
-problem_lx.o: problem_lx.c
-	$(CC) $(CFLAGS) problem_lx.c
-
+.PHONY: clean
 clean:
-	rm -f problem_lx_main.o problem_lx.o
+	rm -f *.o lexem.out

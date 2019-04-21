@@ -10,20 +10,6 @@
 char asm_commands[7][7] =
   { "MOVI D", "ADD", "SUB", "MUL", "DIV", "IN", "OUT" };
 
-// function returns number that is read from string 'str' with num system base
-// 'sys'
-unsigned char
-read_num (char *str, int sys)
-{
-  int i, i0;
-  unsigned char res = 0;
-  for (i = 0; isdigit (str[i]) == 0; ++i);
-  i0 = i;
-  for (; isdigit (str[i]); ++i)
-    res = res * sys + (str[i] - '0');
-  return res;
-}
-
 // function returns 4 bits with registor's information from command in string
 // 'str'; 'one_reg' is flag for commands 'IN' and 'OUT' 
 unsigned char

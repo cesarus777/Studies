@@ -10,8 +10,10 @@ larr_realloc_check (struct lex_array_t *larr)
   if ((larr->capacity - larr->size) == 1)
     {
       struct lexem_t *r = (struct lexem_t *) realloc (larr->lexems,
-						      (larr->size + ICAP) * sizeof (struct lexem_t));
-
+						      (larr->size +
+						       ICAP) *
+						      sizeof (struct
+							      lexem_t));
       assert (r != NULL);
       larr->lexems = r;
       larr->capacity += ICAP;
@@ -32,7 +34,9 @@ lex_string (const char *str)
   assert (str != NULL);
 
   struct lex_array_t larr = { malloc (ICAP * sizeof (struct lexem_t)),
-    0, ICAP };
+    0,
+    ICAP
+  };
 
   assert (larr.lexems != NULL);
 
@@ -41,80 +45,90 @@ lex_string (const char *str)
   for (int i = 0; str[i] != '\0'; ++i)
     {
       if (isspace (str[i]))
-    	  continue;
+	continue;
 
       if (islbrace (str[i]))
-	      {
-	        struct lexem_t l = { BRACE, LBRAC };
-	        push_back_lexem (&larr, l);
-	        ++lbn;
-	        continue;
-      	}
+	{
+	  struct lexem_t l = { BRACE, LBRAC };
+    push_back_lexem(&larr, l);
+	  ++lbn;
+	  continue;
+	}
 
       if (isrbrace (str[i]))
-	      {
-	        struct lexem_t l = { BRACE, RBRAC };
-	        push_back_lexem (&larr, l);
-	        ++rbn;
-	        continue;
-      	}
+	{
+	  struct lexem_t l = { BRACE, RBRAC };
+    push_back_lexem(&larr, l);
+	  ++rbn;
+	  continue;
+	}
 
       if (!isalnum (str[i]))
-	      {
-	        if (larr.lexems[larr.size - 1].kind == OP)
-	          {
-	             free (larr.lexems);
-	             struct lex_array_t l = { NULL, 0, 0 };
-	             return l;
-	          }
-	        if (isplus (str[i]))
-	          {
-	            struct lexem_t l = { OP, ADD };
-	            push_back_lexem (&larr, l);
-	            continue;
-	          }
-      	  if (isminus (str[i]))
-	          {
-	            struct lexem_t m = { OP, SUB };
-	            push_back_lexem (&larr, m);
-	            continue;
-	          }
-	        if (ismul (str[i]))
-	          {
-	            struct lexem_t n = { OP, MUL };
-	            push_back_lexem (&larr, n);
-	            continue;
-	          }
-	        if (isdiv (str[i]))
-	          {
-	            struct lexem_t k = {	OP, DIV };
-	            push_back_lexem (&larr, k);
-	            continue;
-	          }
+	{
+	  if (larr.lexems[larr.size - 1].kind == OP)
+	    {
+	      free (larr.lexems);
+	      struct lex_array_t l = { NULL, 0, 0 };
+	      return l;
+	    }
+	  if (isplus (str[i]))
+	    {
+	      struct lexem_t l = {
+		OP, ADD
+	      };
+        push_back_lexem(&larr, l);
+	      continue;
+	    }
+	  if (isminus (str[i]))
+	    {
+	      struct lexem_t m = {
+		OP, SUB
+	      };
+        push_back_lexem(&larr, m);
+	      continue;
+	    }
+	  if (ismul (str[i]))
+	    {
+	      struct lexem_t n = {
+		OP, MUL
+	      };
+        push_back_lexem(&larr, n);
+	      continue;
+	    }
+	  if (isdiv (str[i]))
+	    {
+	      struct lexem_t k = {
+		OP, DIV
+	      };
+        push_back_lexem(&larr, k);
+	      continue;
+	    }
 
-	        free (larr.lexems);
-	        struct lex_array_t l = { NULL, 0, 0 };
-	        return l;
-	      }
+	  free (larr.lexems);
+	  struct lex_array_t l = { NULL, 0, 0 };
+	  return l;
+	}
 
       if (isdigit (str[i]))
-	      {
-	        if (larr.lexems[larr.size - 1].kind == NUM)
-	          {
-	            free (larr.lexems);
-	            struct lex_array_t l = { NULL, 0, 0 };
-	            return l;
-	          }
-	        char *strp;
-	        int read = (int) strtol ((str + i), &strp, 10);
-	        struct lexem_t l = { NUM, read };
-	        i = strp - str - 1;
-	        push_back_lexem (&larr, l);
+	{
+	  if (larr.lexems[larr.size - 1].kind == NUM)
+	    {
+	      free (larr.lexems);
+	      struct lex_array_t l = { NULL, 0, 0 };
+	      return l;
+	    }
+	  char *strp;
+	  int read = (int) strtol ((str + i), &strp, 10);
+	  struct lexem_t l = { NUM, read };
+	  i = strp - str - 1;
+    push_back_lexem(&larr, l);
 
-	        continue;
-	      }
+	  continue;
+	}
 
-      struct lex_array_t l = { NULL, 0, 0 };
+      struct lex_array_t l = {
+	NULL, 0, 0
+      };
       larr = l;
       break;
     }
