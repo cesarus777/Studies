@@ -1,5 +1,8 @@
 #include "problem_lx.h"
 
+//#define PROBLEM_LX
+//#define PROBLEM_ST
+
 enum { MAXLEN = 1024 };
 
 int test_dump() {
@@ -28,7 +31,12 @@ int main() {
     return 0;
   }
 
+#ifdef PROBLEM_LX
   dump_lexarray(larr);
+#endif
+
+#ifdef PROBLEM_ST
+#endif 
 
   free(larr.lexems);
   return 0;
