@@ -1,7 +1,8 @@
 #include "problem_lx.h"
+#include "problem_st.h"
 
 //#define PROBLEM_LX
-//#define PROBLEM_ST
+#define PROBLEM_ST
 
 enum { MAXLEN = 1024 };
 
@@ -36,6 +37,8 @@ int main() {
 #endif
 
 #ifdef PROBLEM_ST
+  res = pars(larr);
+  printf("%d\n", res);
 #endif 
 
   free(larr.lexems);

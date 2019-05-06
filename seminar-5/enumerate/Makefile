@@ -2,11 +2,11 @@
 CC=gcc
 
 # compilation flags
-CFLAGS=
+CFLAGS= -g
 
 all: lexem.out
 
-lexem.out: problem_lx_main.o problem_lx.o symbol_check.o
+lexem.out: main.o problem_lx.o problem_st.o symbol_check.o
 	$(CC) $? -o $@
 
 .PHONY: clean
