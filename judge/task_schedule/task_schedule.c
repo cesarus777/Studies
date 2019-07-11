@@ -1,7 +1,5 @@
 #include <stdlib.h>
 
-//#define ever ;;
-
 struct added_nodes_t {
     int n_added;
     int capacity;
