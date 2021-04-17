@@ -1,26 +1,27 @@
 #include "addition.h"
 
+
 /* In addition.c you can configure this programm, depending on your needs */
 
-struct matrix_t matrix_mult(struct matrix_t a, struct matrix_t b)
+void matrix_mult(struct matrix_t a, struct matrix_t b, struct matrix_t c)
 {
-    assert(a.size == b.size);
-    struct matrix_t res;
-    res.size = a.size;
-    res.elems = (double *) calloc(res.size * res.size, sizeof(double));
-    assert(res.elems != NULL && a.elems != NULL && b.elems != NULL);
-    for(int i = 0; i < res.size; ++i)
-        for(int j = 0; j < res.size; ++j)
-            for(int k = 0; k < res.size; ++k)
-                res.elems[i * res.size + j] += a.elems[i * res.size + k] * b.elems[k * res.size + j];
-    return res;
+    assert((a.size == b.size) && (b.size = c.size));
+    assert(a.elems != NULL && b.elems != NULL && c.elems != NULL);
+    int size = a.size;
+    for(int i = 0; i < size; ++i)
+        for(int j = 0; j < size; ++j)
+            for(int k = 0; k < size; ++k)
+                a.elems[i * size + j] += b.elems[i * size + k] * c.elems[k * size + j];
 }
 
 struct matrix_t matrix_pown(struct matrix_t mtx, int p)
 {
-    struct matrix_t prod;
-    prod.size = mtx.size;
-    prod.elems = (double *) calloc(prod.size * prod.size, sizeof(double));
+    struct matrix_t prod, mid_res;
+    int size = mtx.size;
+    prod.size = size;
+    mid_res.size = size;
+    prod.elems = (double *) calloc(size * size, sizeof(double));
+    mid_res.elems = (double *) calloc(size * size, sizeof(double));
     
     //at start prod must be unit matrix
     for(int i = 0; i < prod.size; ++i)
@@ -30,10 +31,12 @@ struct matrix_t matrix_pown(struct matrix_t mtx, int p)
     {
         if((p % 2) == 1)
         {
-            prod = matrix_mult(prod, mtx);
+            matrix_mult(mid_res, prod, mtx);
+            memcpy(prod.elems, mid_res.elems, size * size * sizeof(double));
             p -= 1;
         } else {
-            mtx = matrix_mult(mtx, mtx);
+            matrix_mult(mid_res, mtx, mtx);
+            memcpy(mid_res.elems, mid_res.elems, size * size * sizeof(double));
             p /= 2;
         }
     }
